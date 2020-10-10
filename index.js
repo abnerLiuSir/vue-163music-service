@@ -3,16 +3,14 @@ var app = express();
 var api = require('NeteaseCloudMusicApi');
 
 
-app.get('/banner',async function (req, res) {
-    console.log(11);
-    try {
-        api["banner"]({type: 0})
-            .then((data) => {
-                res.send(data.body);
-            })
-    } catch (error) {
-        console.log(error)
-    }
+app.get('/forword', (req, res) => {
+    var query = req.query;
+    var route = query.route;
+    delete query.route;
+    api[route](query)
+        .then((data) => {
+            res.send(data.body)
+        })
 })
 
 console.log("服务已开启，监听3000端口")
