@@ -3,13 +3,13 @@ var app = express();
 var api = require('NeteaseCloudMusicApi');
 
 
-app.get('/forword', (req, res) => {
+app.get('/forward', (req, res) => {
     var query = req.query;
     var route = query.route;
     delete query.route;
     api[route](query)
         .then((data) => {
-            res.send(data.body)
+            res.send(data)
         })
 })
 
